@@ -69,7 +69,8 @@ const projects = [
       "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
     accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
     previewImage: "/previews/bot-nexus.jpg",
-    previewImageMobile: "/previews/bot-nexus-mobile.jpg",
+     previewImageMobile: "/previews/ipad-2.png",
+    deviceImage: "/previews/Starlight-1.png",
   },
   {
     title: "Razor & Co.",
@@ -79,7 +80,8 @@ const projects = [
       "A cinematic barbershop experience with bold typography, deep contrast, and smooth scroll-driven storytelling.",
     accent: "from-rose-500/60 via-amber-400/60 to-emerald-400/60",
     previewImage: "/previews/barbershop.jpg",
-    previewImageMobile: "/previews/barbershop-mobile.jpg",
+    previewImageMobile: "/previews/iphone-2.png",
+    deviceImage: "/previews/Starlight-2.png",
   },
   {
     title: "AEX Bike Gear",
@@ -89,7 +91,8 @@ const projects = [
       "High-impact visuals, layered depth, and motion that showcases performance gear in a tactile, responsive layout.",
     accent: "from-sky-500/60 via-indigo-500/60 to-fuchsia-500/60",
     previewImage: "/previews/bike-gear.jpg",
-    previewImageMobile: "/previews/bike-gear-mobile.jpg",
+    previewImageMobile: "/previews/ipad-1.png",
+    deviceImage: "/previews/Starlight.png",
   },
   {
     title: "Cine‑Lab Studio",
@@ -99,7 +102,8 @@ const projects = [
       "An atmospheric cine‑lab that explores light, grain, and motion through bold layouts and story‑driven sections.",
     accent: "from-amber-500/60 via-orange-500/60 to-rose-500/60",
     previewImage: "/previews/cine-lab.jpg",
-    previewImageMobile: "/previews/cine-lab-mobile.jpg",
+    previewImageMobile: "/previews/ipad-3.png",
+    deviceImage: "/previews/Starlight-5.png",
   },
   
   {
@@ -110,7 +114,8 @@ const projects = [
       "A B2B SaaS platform for forecasting, tracking KPIs, and visualizing complex market data with crisp dashboards and interactions.",
     accent: "from-emerald-500/60 via-sky-400/60 to-violet-500/60",
     previewImage: "/previews/valuemap.jpg",
-    previewImageMobile: "/previews/valuemap-mobile.jpg",
+    previewImageMobile: "/previews/ipad-1.png",
+    deviceImage: "/previews/Starlight-4.png",
   },
   {
     title: "91 Degrees – Modern Sanitary Care",
@@ -120,10 +125,10 @@ const projects = [
       "A modern sanitary care brand website with editorial layouts, clean product storytelling, and fluid mobile-first browsing.",
     accent: "from-rose-500/60 via-amber-400/60 to-sky-400/60",
     previewImage: "/previews/91-degrees.jpg",
-    previewImageMobile: "/previews/91-degrees-mobile.jpg",
+    previewImageMobile: "/previews/ipad-1.png",
+    deviceImage: "/previews/Starlight-5.png",
   },
 ];
-
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
@@ -358,10 +363,18 @@ export default function Home() {
                 />
 
              
-                <div className="flex items-center  justify-evenly"> 
-                   <img src={"/Starlight.png"} alt={project.title} className="w-3/5 h-full object-cover" />
-                   <img src={"iPad Pro.png"} alt={project.title} className="w-1/5 h-full object-contain scale-125" />
-                {/* <img src={"/Device 14PM.svg"} alt={project.title} className="w-1/5 h-full object-cover scale-90" /> */}
+                <div className="flex items-center justify-evenly">
+                  <img
+                    src={project.deviceImage}
+                    alt={project.title}
+                    className="w-3/5 h-full object-cover"
+                  />
+                  <img
+                    src={project.previewImageMobile}
+                    alt={project.title}
+                    className="w-1/5 h-full object-contain scale-125"
+                  />
+                  {/* <img src={"/Device 14PM.svg"} alt={project.title} className="w-1/5 h-full object-cover scale-90" /> */}
                 </div>
               
                   
