@@ -70,7 +70,7 @@ const projects = [
       "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
     accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
     previewImage: "/previews/bot-nexus.jpg",
-    previewImageMobile: "/previews/ipad-2.png",
+    previewImageMobile: "/previews/iPad-2.png",
     deviceImage: "/previews/Starlight-1.png",
   },
   {
@@ -81,7 +81,7 @@ const projects = [
       "A cinematic barbershop experience with bold typography, deep contrast, and smooth scroll-driven storytelling.",
     accent: "from-rose-500/60 via-amber-400/60 to-emerald-400/60",
     previewImage: "/previews/barbershop.jpg",
-    previewImageMobile: "/previews/iphone-2.png",
+    previewImageMobile: "/previews/iPad-1.png",
     deviceImage: "/previews/Starlight-2.png",
   },
   {
@@ -92,7 +92,7 @@ const projects = [
       "High-impact visuals, layered depth, and motion that showcases performance gear in a tactile, responsive layout.",
     accent: "from-sky-500/60 via-indigo-500/60 to-fuchsia-500/60",
     previewImage: "/previews/bike-gear.jpg",
-    previewImageMobile: "/previews/ipad-1.png",
+    previewImageMobile: "/previews/iPad-1.png",
     deviceImage: "/previews/Starlight.png",
   },
   {
@@ -103,7 +103,7 @@ const projects = [
       "An atmospheric cine‑lab that explores light, grain, and motion through bold layouts and story‑driven sections.",
     accent: "from-amber-500/60 via-orange-500/60 to-rose-500/60",
     previewImage: "/previews/cine-lab.jpg",
-    previewImageMobile: "/previews/ipad-3.png",
+    previewImageMobile: "/previews/iPad-3.png",
     deviceImage: "/previews/Starlight-5.png",
   },
   
@@ -115,7 +115,7 @@ const projects = [
       "A B2B SaaS platform for forecasting, tracking KPIs, and visualizing complex market data with crisp dashboards and interactions.",
     accent: "from-emerald-500/60 via-sky-400/60 to-violet-500/60",
     previewImage: "/previews/valuemap.jpg",
-    previewImageMobile: "/previews/ipad-1.png",
+    previewImageMobile: "/previews/iPad-1.png",
     deviceImage: "/previews/Starlight-4.png",
   },
   {
@@ -126,7 +126,7 @@ const projects = [
       "A modern sanitary care brand website with editorial layouts, clean product storytelling, and fluid mobile-first browsing.",
     accent: "from-rose-500/60 via-amber-400/60 to-sky-400/60",
     previewImage: "/previews/91-degrees.jpg",
-    previewImageMobile: "/previews/ipad-1.png",
+    previewImageMobile: "/previews/iPad-1.png",
     deviceImage: "/previews/Starlight-5.png",
   },
 ];
