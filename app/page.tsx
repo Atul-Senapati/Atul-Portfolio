@@ -32,8 +32,9 @@ const toolGroups = [
     borderGlow: "group-hover:shadow-[0_0_24px_-4px_rgba(52,211,153,0.4)]",
     tools: [
       { name: "Next.js", icon: "/tech-icons/react.svg" },
-      { name: "React", icon: "/tech-icons/react.svg" },
+     
       { name: "Vue", icon: "/tech-icons/vue.svg" },
+      { name: "React", icon: "/tech-icons/react.svg" },
       { name: "HTML5", icon: "/tech-icons/html5.svg" },
       { name: "CSS3", icon: "/tech-icons/css3.svg" },
       { name: "JavaScript", icon: "/tech-icons/javascript.svg" },
@@ -69,7 +70,7 @@ const projects = [
       "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
     accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
     previewImage: "/previews/bot-nexus.jpg",
-     previewImageMobile: "/previews/ipad-2.png",
+    previewImageMobile: "/previews/ipad-2.png",
     deviceImage: "/previews/Starlight-1.png",
   },
   {
@@ -387,7 +388,7 @@ export default function Home() {
                       {project.title}
                     </h3>
                   </div>
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/80 text-sm text-zinc-200 transition group-hover:border-zinc-200 group-hover:bg-zinc-50 group-hover:text-zinc-950">
+                  <span className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/80 text-sm text-zinc-200 transition group-hover:border-zinc-200 group-hover:bg-zinc-50 group-hover:text-zinc-950">
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
@@ -399,7 +400,7 @@ export default function Home() {
                 <div className="relative mt-4 flex items-center gap-3 text-[0.7rem] text-zinc-400">
                   <span className="inline-flex items-center gap-1 rounded-full border border-zinc-800/80 bg-zinc-900/80 px-2.5 py-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]" />
-                    Live in this project
+                    {" "}Live in this project
                   </span>
                   <span className="hidden text-zinc-500 sm:inline">
                     Hover to preview the energy. Click to dive in.
