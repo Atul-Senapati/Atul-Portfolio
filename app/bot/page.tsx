@@ -202,6 +202,47 @@ export default function BotPage() {
         </div>
       </section>
 
+
+       {/* 3D Interactive Section */}
+       <section id="architecture" className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+          >
+            <Card className="w-full h-[600px] bg-neutral-950 relative overflow-hidden border border-white/10 rounded-3xl">
+              <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={400} />
+              
+              {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_100%)] pointer-events-none z-20" /> */}
+
+              <div className="flex flex-col md:flex-row h-full relative z-10">
+                <div className="flex-1 p-8 md:p-16 flex flex-col justify-center pointer-events-none">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium text-neutral-300 uppercase tracking-widest mb-6 w-fit">
+                    Interactive Architecture
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">
+                    Visualize the <br />
+                    <span className="text-neutral-500">data flow.</span>
+                  </h2>
+                  <p className="text-neutral-400 max-w-md text-lg leading-relaxed">
+                    Interact with our 3D representation of the Nexus neural architecture. Watch how nodes communicate and process information in real-time.
+                  </p>
+                </div>
+                
+                <div className="flex-1 relative min-h-[300px] md:min-h-0">
+                  <SplineScene
+                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    className="w-full h-full absolute inset-0 scale-125 md:scale-100 origin-center"
+                  />
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Bento Grid Features */}
       <section id="features" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -497,45 +538,7 @@ export default function BotPage() {
         </div>
       </section>
 
-      {/* 3D Interactive Section */}
-      <section id="architecture" className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
-            <Card className="w-full h-[600px] bg-neutral-950 relative overflow-hidden border border-white/10 rounded-3xl">
-              <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={400} />
-              
-              {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_100%)] pointer-events-none z-20" /> */}
-
-              <div className="flex flex-col md:flex-row h-full relative z-10">
-                <div className="flex-1 p-8 md:p-16 flex flex-col justify-center pointer-events-none">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium text-neutral-300 uppercase tracking-widest mb-6 w-fit">
-                    Interactive Architecture
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">
-                    Visualize the <br />
-                    <span className="text-neutral-500">data flow.</span>
-                  </h2>
-                  <p className="text-neutral-400 max-w-md text-lg leading-relaxed">
-                    Interact with our 3D representation of the Nexus neural architecture. Watch how nodes communicate and process information in real-time.
-                  </p>
-                </div>
-                
-                <div className="flex-1 relative min-h-[300px] md:min-h-0">
-                  <SplineScene
-                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                    className="w-full h-full absolute inset-0 scale-125 md:scale-100 origin-center"
-                  />
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
+     
 
       {/* Code Integration Section */}
       <section id="integration" className="py-32 px-6 bg-white/[0.02] border-y border-white/5">

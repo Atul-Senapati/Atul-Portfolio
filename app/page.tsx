@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { ArrowUpRight } from "lucide-react";
 
 
 const toolGroups = [
@@ -57,7 +62,17 @@ const toolGroups = [
 
 const projects = [
   {
-    title: "Barbershop Experience",
+    title: "Nexus AI",
+    href: "/bot",
+    label: "AI, 3D feel, Interface",
+    description:
+      "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
+    accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
+    previewImage: "/previews/bot-nexus.jpg",
+    previewImageMobile: "/previews/bot-nexus-mobile.jpg",
+  },
+  {
+    title: "Razor & Co.",
     href: "/barbershop",
     label: "Brand, UI, Interaction",
     description:
@@ -67,9 +82,9 @@ const projects = [
     previewImageMobile: "/previews/barbershop-mobile.jpg",
   },
   {
-    title: "Bike Gear Immersive",
+    title: "AEX Bike Gear",
     href: "/bike-gear",
-    label: "3D feel, Product UI",
+    label: "Adventure, Brand, Product UI",
     description:
       "High-impact visuals, layered depth, and motion that showcases performance gear in a tactile, responsive layout.",
     accent: "from-sky-500/60 via-indigo-500/60 to-fuchsia-500/60",
@@ -86,38 +101,113 @@ const projects = [
     previewImage: "/previews/cine-lab.jpg",
     previewImageMobile: "/previews/cine-lab-mobile.jpg",
   },
+  
   {
-    title: "Bot Nexus AI",
-    href: "/bot",
-    label: "AI, Chat, Interface",
+    title: "ValueMap – Market Prediction & Data Analysis",
+    href: "https://saas-landing-page-beige-one.vercel.app/", // replace with live URL later
+    label: "SaaS, Strategy, Analytics",
     description:
-      "An AI-powered chat interface that brings conversational experiences to life with clean design and smooth interactions.",
-    accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
-    previewImage: "/previews/bot-nexus.jpg",
-    previewImageMobile: "/previews/bot-nexus-mobile.jpg",
-  }
+      "A B2B SaaS platform for forecasting, tracking KPIs, and visualizing complex market data with crisp dashboards and interactions.",
+    accent: "from-emerald-500/60 via-sky-400/60 to-violet-500/60",
+    previewImage: "/previews/valuemap.jpg",
+    previewImageMobile: "/previews/valuemap-mobile.jpg",
+  },
+  {
+    title: "91 Degrees – Modern Sanitary Care",
+    href: "https://www.91degrees.in/", // replace with live URL later
+    label: "Brand, E‑commerce, Lifestyle",
+    description:
+      "A modern sanitary care brand website with editorial layouts, clean product storytelling, and fluid mobile-first browsing.",
+    accent: "from-rose-500/60 via-amber-400/60 to-sky-400/60",
+    previewImage: "/previews/91-degrees.jpg",
+    previewImageMobile: "/previews/91-degrees-mobile.jpg",
+  },
 ];
 
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
+
 export default function Home() {
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const name = (formData.get("name") as string | null)?.trim();
+    const email = (formData.get("email") as string | null)?.trim();
+    const project = (formData.get("project") as string | null)?.trim();
+
+    if (!name || !email || !project) {
+      setStatus("error");
+      setErrorMessage("Please fill in your name, email, and a short project description.");
+      return;
+    }
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatus("error");
+      setErrorMessage("Email service is not configured yet. Please try again later.");
+      return;
+    }
+
+    setIsSending(true);
+    setStatus("idle");
+    setErrorMessage(null);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: name,
+          reply_to: email,
+          project_details: project,
+          email: "atulsenapati020601@gmail.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setStatus("success");
+      form.reset();
+    } catch (error) {
+      console.error("EmailJS error", error);
+      setStatus("error");
+      setErrorMessage("Something went wrong sending your message. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-t from-zinc-950 via-zinc-900 to-black text-zinc-50 font-sans">
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-20 px-6 py-16 md:px-10 lg:px-16 lg:py-24">
         {/* Hero */}
         <section className="grid gap-12 md:grid-cols-[minmax(0,3fr),minmax(0,2.4fr)] items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/70 px-4 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400 shadow-[0_0_60px_rgba(255,255,255,0.04)] backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(74,222,128,0.9)]" />
-              Available for design & front‑end builds
+          <div className="space-y-4 sm:space-y-2">
+            <div className="group inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-white/[0.02] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-400 backdrop-blur-md transition-all hover:bg-white/[0.04]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+              </span>
+              <span>Available for design & front‑end builds</span>
             </div>
 
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-4 sm:max-w-md">
+            <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-4 md:max-w-xl">
                 <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
                   <span className="block text-zinc-400 text-base font-normal tracking-[0.3em] uppercase mb-3">
                     Atul Senapati
                   </span>
-                  <span className="bg-gradient-to-r from-zinc-50 via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-                    Design‑driven <span className="text-emerald-400">Developer</span>
+                  <span className="bg-gradient-to-r from-zinc-200 via-neutral-300 to-white bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(45,212,191,0.45)]">
+                    Design‑driven{" "}
+                    <span className="bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-300 bg-clip-text text-transparent">
+                      Developer
+                    </span>
                   </span>
                 </h1>
 
@@ -127,12 +217,12 @@ export default function Home() {
                     to build interfaces that feel sharp and effortless.
                   </p>
                   
-                  <div className="flex items-center gap-4 text-sm font-medium text-zinc-300">
+                  <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-zinc-300">
                     <div className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.6)]" />
                       3+ years experience
                     </div>
-                    <span className="h-4 w-px bg-zinc-800" />
+                    <span className="hidden h-4 w-px bg-zinc-800 sm:inline" />
                     <div className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-zinc-500" />
                       16 projects delivered
@@ -141,14 +231,14 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-2 flex justify-start sm:justify-end">
-                <div className="relative h-92 w-92 overflow-hidden bg-black scale-120">
+              <div className="-mt-2  flex justify-center sm:mt-0 md:justify-end">
+                <div className="relative h-82 w-82 overflow-hidden rounded-3xl bg-black/80 shadow-[0_32px_120px_rgba(0,0,0,1)] sm:h-80 sm:w-80 md:h-96 md:w-96 max-w-screen ">
                   <img
                     src="/developer.png"
                     alt="Portrait of Atul Senapati, design‑driven developer"
-                    className="h-full w-full object-cover grayscale "
+                    className="h-full w-full object-cover grayscale"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-linear-to-t from-black via-black/60 to-transparent" />
                 </div>
               </div>
             </div>
@@ -161,7 +251,7 @@ export default function Home() {
                 >
                   View featured work
                   <span className="transition-transform group-hover:translate-x-1">
-                    ↗
+                    <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </Link>
                 <Link
@@ -285,7 +375,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/80 text-sm text-zinc-200 transition group-hover:border-zinc-200 group-hover:bg-zinc-50 group-hover:text-zinc-950">
-                    ↗
+                    <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
 
@@ -307,104 +397,79 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact */}
-        <section
-          id="contact"
-          className="mt-4 grid gap-8 rounded-3xl border border-zinc-900/80 bg-zinc-950/60 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:grid-cols-[minmax(0,1.4fr),minmax(0,1.6fr)] md:px-8 md:py-10"
-        >
-          <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
-              Contact
-            </p>
-            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-50">
-              Have a project, idea, or experiment in mind?
-            </h2>
-            <p className="text-sm text-zinc-400">
-              I collaborate with founders, product teams, and studios to turn
-              fuzzy ideas into sharp, expressive interfaces. Tell me a bit about
-              what you&apos;re building, and I&apos;ll get back with thoughts on
-              direction, scope, and timelines.
-            </p>
-
-            <div className="space-y-2 text-sm">
-              <p className="text-zinc-300">Direct line</p>
-              <Link
-                href="mailto:hello.atul.senapati@example.com?subject=Let%27s%20build%20something"
-                className="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-200"
-              >
-                hello.atul.senapati@example.com
-                <span className="text-xs">↗</span>
-              </Link>
+        {/* Experience */}
+        <section id="experience" className="space-y-6 mt-12">
+          <div className="flex items-end justify-between gap-4">
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
+                Experience
+              </p>
+              <h2 className="text-xl sm:text-2xl font-semibold text-zinc-50">
+                Where I&apos;ve worked
+              </h2>
             </div>
           </div>
 
-          <form
-            className="space-y-4 text-sm"
-            action="mailto:hello.atul.senapati@example.com"
-            method="post"
-            encType="text/plain"
-          >
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="name"
-                  className="text-[0.75rem] text-zinc-400"
-                >
-                  Your name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  className="w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
-                  placeholder="How should I call you?"
-                  autoComplete="name"
-                />
+          <div className="group relative overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/60 p-6 sm:p-8 shadow-[0_20px_80px_rgba(0,0,0,0.85)] transition duration-300 hover:border-zinc-300/40 hover:shadow-[0_26px_110px_rgba(0,0,0,0.9)]">
+            <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-violet-500/20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+            
+            <div className="relative flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
+              <div className="space-y-1">
+                <h3 className="text-lg font-semibold text-zinc-50">Software Developer</h3>
+                <p className="text-sm font-medium text-emerald-400">INVOLEAD</p>
               </div>
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="email"
-                  className="text-[0.75rem] text-zinc-400"
-                >
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                />
+              <div className="flex flex-col sm:items-end gap-1.5 text-xs text-zinc-400">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800/80 bg-zinc-900/80 px-2.5 py-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)] animate-pulse" />
+                  Jan 2024 – Present
+                </span>
+                <span className="text-zinc-500 px-1">Bhubaneswar</span>
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <label
-                htmlFor="project"
-                className="text-[0.75rem] text-zinc-400"
-              >
-                What are you looking to build?
-              </label>
-              <textarea
-                id="project"
-                name="project"
-                rows={4}
-                className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
-                placeholder="Share a few lines about your idea, product, or brand. Timelines and links are welcome."
-              />
-            </div>
+            <div className="relative space-y-8">
+              {/* Project 1 */}
+              <div className="relative">
+                <h4 className="text-sm font-medium text-zinc-200 mb-3 flex items-center gap-2">
+                  <span className="h-px w-4 bg-zinc-700"></span>
+                  B2B Marketing Analytics Platform
+                </h4>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-400 ml-6">
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Developed and maintained interactive dashboards using Next.js, Chart.js, Tailwind CSS, MongoDB, and Flask.
+                  </li>
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Built complex data visualization modules to present campaign performance, engagement metrics, and marketing insights.
+                  </li>
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Integrated real-time data services and developed reusable UI components for consistency across analytics modules.
+                  </li>
+                </ul>
+              </div>
 
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 shadow-[0_18px_60px_rgba(34,197,94,0.55)] transition hover:bg-emerald-300"
-            >
-              Send message
-              <span>→</span>
-            </button>
-            <p className="text-[0.7rem] text-zinc-500">
-              This will open your default mail app with the details you provide.
-            </p>
-          </form>
+              {/* Project 2 */}
+              <div className="relative">
+                <h4 className="text-sm font-medium text-zinc-200 mb-3 flex items-center gap-2">
+                  <span className="h-px w-4 bg-zinc-700"></span>
+                  AI Conversational Interface & Interactive Avatar System
+                </h4>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-400 ml-6">
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Developed a conversational UI enabling users to interact with an AI assistant using natural language queries.
+                  </li>
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Designed and integrated a 3D avatar interface supporting real-time two-way voice conversations.
+                  </li>
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Implemented text-to-speech (TTS) and speech input features for a natural interaction experience.
+                  </li>
+                  <li className="relative before:absolute before:-left-4 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-zinc-700">
+                    Built dynamic chat interfaces with streaming responses and message state handling.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Tools I use */}
@@ -464,6 +529,114 @@ export default function Home() {
             ))}
           </div>
         </section>
+      
+        {/* Contact */}
+        <section
+          id="contact"
+          className="mt-4 grid gap-8 rounded-3xl border border-zinc-900/80 bg-zinc-950/60 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:grid-cols-[minmax(0,1.4fr),minmax(0,1.6fr)] md:px-8 md:py-10"
+        >
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
+              Contact
+            </p>
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-50">
+              Have a project, idea, or experiment in mind?
+            </h2>
+            <p className="text-sm text-zinc-400">
+              I collaborate with founders, product teams, and studios to turn
+              fuzzy ideas into sharp, expressive interfaces. Tell me a bit about
+              what you&apos;re building, and I&apos;ll get back with thoughts on
+              direction, scope, and timelines.
+            </p>
+
+            <div className="space-y-2 text-sm">
+              <p className="text-zinc-300">Direct line</p>
+              <Link
+                href="mailto:atulsenapati020601@gmail.com?subject=Let%27s%20build%20something"
+                className="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-200"
+              >
+                atulsenapati020601@gmail.com
+                <ArrowUpRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+
+          <form className="space-y-4 text-sm" onSubmit={handleSubmit}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="name"
+                  className="text-[0.75rem] text-zinc-400"
+                >
+                  Your name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  className="w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
+                  placeholder="How should I call you?"
+                  autoComplete="name"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="email"
+                  className="text-[0.75rem] text-zinc-400"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  className="w-full rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
+                  placeholder="you@example.com"
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label
+                htmlFor="project"
+                className="text-[0.75rem] text-zinc-400"
+              >
+                What are you looking to build?
+              </label>
+              <textarea
+                id="project"
+                name="project"
+                rows={4}
+                className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 transition placeholder:text-zinc-500 focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-500/30"
+                placeholder="Share a few lines about your idea, product, or brand. Timelines and links are welcome."
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSending}
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 shadow-[0_18px_60px_rgba(34,197,94,0.55)] transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isSending ? "Sending..." : "Send message"}
+              <span>→</span>
+            </button>
+            {status === "success" && (
+              <p className="text-[0.7rem] text-emerald-400">
+                Message sent successfully. I&apos;ll get back to you shortly.
+              </p>
+            )}
+            {status === "error" && errorMessage && (
+              <p className="text-[0.7rem] text-rose-400">{errorMessage}</p>
+            )}
+            {status === "idle" && (
+              <p className="text-[0.7rem] text-zinc-500">
+                This will send your message directly without opening your mail app.
+              </p>
+            )}
+          </form>
+        </section>
+
+      
 
         {/* Footer */}
         <footer className="mt-6 flex flex-col gap-3 border-t border-zinc-900/80 pt-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">

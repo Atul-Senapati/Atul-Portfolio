@@ -30,7 +30,7 @@ export default function BikeGearPage() {
         <SectorGridSection />
         <PerformanceMetricsSection />
         <InventorySection />
-        <TransmissionSection />
+        {/* <TransmissionSection /> */}
         <ImmersiveSection />
         <GlobalNetworkSection />
         <ProTeamSection />
