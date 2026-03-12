@@ -124,7 +124,7 @@ const projects = [
       "A cinematic barbershop experience with bold typography, deep contrast, and smooth scroll-driven storytelling.",
     accent: "from-rose-500/60 via-amber-400/60 to-emerald-400/60",
     previewImage: "/previews/barbershop.jpg",
-    previewImageMobile: "/previews/iPhone-1.png",
+    previewImageMobile: "/previews/iphone-1.png",
     deviceImage: "/previews/Starlight-2.png",
   },
   {
@@ -150,18 +150,18 @@ const projects = [
     deviceImage: "/previews/Starlight-5.png",
   },
   {
-    title: "Revio AI – Market Prediction & Data Analysis",
+    title: "Revio AI ",
     href: "https://saas-landing-page-beige-one.vercel.app/",
     label: "SaaS, Strategy, Analytics",
     description:
       "A B2B SaaS platform for forecasting, tracking KPIs, and visualizing complex market data with crisp dashboards and interactions.",
     accent: "from-emerald-500/60 via-sky-400/60 to-violet-500/60",
     previewImage: "/previews/valuemap.jpg",
-    previewImageMobile: "/previews/iPad-4.png",
+    previewImageMobile: "/previews/ipad-4.png",
     deviceImage: "/previews/Starlight-7.png",
   },
   {
-    title: "91 Degrees – Modern Sanitary Care",
+    title: "91 Degrees",
     href: "https://www.91degrees.in/",
     label: "Brand, E‑commerce, Lifestyle",
     description:
@@ -722,7 +722,7 @@ export default function HomeClient() {
         {/* Connect / Social */}
         <section
           id="connect"
-          className="relative mt-6 md:mt-10 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.9)] md:px-8 md:py-7"
+          className="relative mt-2 md:mt-6 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.9)] md:px-8 md:py-7"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_-20%,rgba(16,185,129,0.12),transparent)]" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-[radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_60%)]" />
