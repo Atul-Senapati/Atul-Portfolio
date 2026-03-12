@@ -24,3 +24,85 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroBlindsIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scaleY(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes globeDrift {
+  0% {
+    transform: translateX(-6%) scale(1.02);
+  }
+  50% {
+    transform: translateX(4%) scale(1.03);
+  }
+  100% {
+    transform: translateX(-4%) scale(1.02);
+  }
+}
+
+@keyframes globeRingSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes globePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(63, 85, 107, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(63, 85, 107, 0);
+  }
+}
+
+@keyframes globeRotate3D {
+  from {
+    transform: rotateY(0deg) rotateX(10deg) rotateZ(5deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(10deg) rotateZ(5deg);
+  }
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: loaderSpin 0.8s linear infinite;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
