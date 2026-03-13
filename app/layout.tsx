@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     title: "Atul Senapati – Design‑driven developer",
     description:
       "Explore Atul Senapati’s design‑driven development work, experiments, and visuals.",
-    url: "https://coolpix.atulsenapati.com",
-    siteName: "CoolPix by Atul Senapati",
+    url: "https://atul-portfolio-red.vercel.app/",
+    siteName: "Atul Senapati",
     images: [
       {
-        url: "/developer.png",
+        url: "https://atul-portfolio-red.vercel.app/developer.png",
         width: 1200,
         height: 630,
         alt: "Atul Senapati – Design‑driven developer",
