@@ -240,11 +240,11 @@ export default function HomeClient() {
 
   return (
     <div className="min-h-screen bg-linear-to-t from-zinc-950 via-zinc-900 to-black text-zinc-50 font-sans">
-      <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-20 px-6 py-16 md:px-10 lg:px-16 lg:py-24">
+    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 md:gap-16 lg:gap-20 px-6 py-16 md:px-10 lg:px-16 lg:py-24">
         {/* Hero */}
         <section className="grid gap-12 md:grid-cols-[minmax(0,3fr),minmax(0,2.4fr)] items-center">
           <div className="space-y-4 sm:space-y-2">
-            <div className="group inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-white/[0.02] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-400 backdrop-blur-md transition-all hover:bg-white/[0.04]">
+            <div className="group inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-white/[0.02] px-3 py-1 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-400 backdrop-blur-md transition-all hover:bg-white/[0.04]">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
@@ -467,6 +467,9 @@ export default function HomeClient() {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="mt-1 text-center text-xs text-zinc-500 sm:mt-2 sm:text-sm">
+            …and more experiments coming soon.
           </div>
         </section>
 
@@ -747,7 +750,7 @@ export default function HomeClient() {
                   key={item.label}
                   href={item.href}
                   target="_blank"
-                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-zinc-800/80 bg-zinc-950/80 px-3.5 py-1.75 text-xs text-zinc-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:border-emerald-400/80 hover:bg-zinc-900"
+                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-zinc-800/80 bg-zinc-950/80 px-3.5 py-1.75 text-xs text-zinc-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:border-zinc-400/60 hover:bg-zinc-900"
                 >
                   <div
                     className={`pointer-events-none absolute inset-px rounded-full opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-70 bg-linear-to-r ${item.accent}`}
