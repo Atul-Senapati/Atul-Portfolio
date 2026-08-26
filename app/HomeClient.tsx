@@ -39,6 +39,7 @@ const toolGroups = [
       { name: "TypeScript", icon: "/tech-icons/typescript.svg" },
       { name: "Tailwind", icon: "/tech-icons/tailwind.svg" },
       { name: "Webflow", icon: "/tech-icons/webflow.svg" },
+      { name: "WordPress", icon: "/tech-icons/wordpress.svg" },
       { name: "Bootstrap", icon: "/tech-icons/boostrap.svg" },
       { name: "jQuery", icon: "/tech-icons/jquery.svg" },
     ],
@@ -106,15 +107,15 @@ const socialLinks = [
 
 const projects = [
   {
-    title: "Nexus AI",
-    href: "/bot",
-    label: "AI, 3D feel, Interface",
+    title: "Seenly",
+    href: "https://web-psi-bice-41.vercel.app/",
+    label: "SaaS, Dashboard, Analytics",
     description:
-      "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
-    accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
-    previewImage: "/previews/bot-nexus.jpg",
-    previewImageMobile: "/previews/iPad-2.png",
-    deviceImage: "/previews/Starlight-1.png",
+      "A Gmail read-receipt product with a crisp analytics dashboard — open rates, follow-ups, and reply tracking in a bold editorial layout.",
+    accent: "from-lime-400/60 via-emerald-400/60 to-zinc-200/60",
+    previewImage: "/previews/seenly.jpg",
+    previewImageMobile: "/previews/ipad-seenly.png",
+    deviceImage: "/previews/Starlight-seenly.png",
   },
   {
     title: "Razor & Co.",
@@ -128,15 +129,15 @@ const projects = [
     deviceImage: "/previews/Starlight-2.png",
   },
   {
-    title: "AEX Bike Gear",
-    href: "/bike-gear",
-    label: "Adventure, Brand, Product UI",
+    title: "Kind to Me",
+    href: "https://atul-senapati.github.io/KindToMe/",
+    label: "Non‑profit, Editorial, Giving",
     description:
-      "High-impact visuals, layered depth, and motion that showcases performance gear in a tactile, responsive layout.",
-    accent: "from-sky-500/60 via-indigo-500/60 to-fuchsia-500/60",
-    previewImage: "/previews/bike-gear.jpg",
-    previewImageMobile: "/previews/iPad-1.png",
-    deviceImage: "/previews/Starlight.png",
+      "A giving platform for causes and volunteers — warm editorial type, live impact counters, and cause pages you can follow from pledge to delivery.",
+    accent: "from-orange-500/60 via-amber-400/60 to-lime-400/60",
+    previewImage: "/previews/kindtome.jpg",
+    previewImageMobile: "/previews/iphone-kindtome.png",
+    deviceImage: "/previews/Starlight-kindtome.png",
   },
   {
     title: "Cine‑Lab Studio",
@@ -170,6 +171,28 @@ const projects = [
     previewImage: "/previews/91-degrees.jpg",
     previewImageMobile: "/previews/iphone3.png",
     deviceImage: "/previews/Starlight-6.png",
+  },
+  {
+    title: "Nexus AI",
+    href: "/bot",
+    label: "AI, 3D feel, Interface",
+    description:
+      "An AI-powered  interface that brings conversational experiences to life with clean design and smooth interactions.",
+    accent: "from-cyan-500/60 via-blue-500/60 to-violet-500/60",
+    previewImage: "/previews/bot-nexus.jpg",
+    previewImageMobile: "/previews/iPad-2.png",
+    deviceImage: "/previews/Starlight-1.png",
+  },
+  {
+    title: "AEX Bike Gear",
+    href: "/bike-gear",
+    label: "Adventure, Brand, Product UI",
+    description:
+      "High-impact visuals, layered depth, and motion that showcases performance gear in a tactile, responsive layout.",
+    accent: "from-sky-500/60 via-indigo-500/60 to-fuchsia-500/60",
+    previewImage: "/previews/bike-gear.jpg",
+    previewImageMobile: "/previews/iPad-1.png",
+    deviceImage: "/previews/Starlight.png",
   },
 ];
 
@@ -251,7 +274,6 @@ export default function HomeClient() {
               </span>
               <span>Available for design & front‑end builds</span>
             </div>
-
             <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-4 md:max-w-xl">
                 <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
@@ -280,7 +302,7 @@ export default function HomeClient() {
                     <span className="hidden h-4 w-px bg-zinc-800 sm:inline" />
                     <div className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-zinc-500" />
-                      16 projects delivered
+                      26 projects delivered
                     </div>
                   </div>
                 </div>
@@ -409,7 +431,7 @@ export default function HomeClient() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {projects?.map((project, index) => (
+            {projects?.map((project) => (
               <Link
                 key={project.href}
                 href={project.href}
@@ -430,7 +452,7 @@ export default function HomeClient() {
                     src={project.previewImageMobile}
                     alt={project.title}
                     className={`w-1/5 h-full object-contain ${
-                      index === 1 || index === projects.length - 1
+                      project.previewImageMobile.includes("iphone")
                         ? "scale-100"
                         : "scale-125"
                     }`}
