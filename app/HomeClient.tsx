@@ -108,9 +108,8 @@ const socialLinks = [
 
 const projects = [
   {
-    // TODO: add `href` once Arclight is deployed. Until then the tile renders
-    // unlinked rather than pointing at a dead or localhost URL.
     title: "Arclight",
+    href: "https://arclight-olive.vercel.app/",
     label: "Consulting, Brand, Web",
     description:
       "A consulting studio site built on one promise — execution over advice. Warm light palette, oversized editorial type, and a hero that keeps the eye moving.",
