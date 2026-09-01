@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { ArrowUpRight } from "lucide-react";
+import FloatingNav from "./FloatingNav";
 
 const toolGroups = [
   {
@@ -263,21 +264,22 @@ export default function HomeClient() {
 
   return (
     <div className="min-h-screen bg-linear-to-t from-zinc-950 via-zinc-900 to-black text-zinc-50 font-sans">
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 md:gap-16 lg:gap-20 px-6 py-16 md:px-10 lg:px-16 lg:py-24">
+    <FloatingNav />
+    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 md:gap-16 lg:gap-20 px-6 py-16 pb-32 md:px-10 md:pb-16 lg:px-16 lg:py-24">
         {/* Hero */}
-        <section className="grid gap-12 md:grid-cols-[minmax(0,3fr),minmax(0,2.4fr)] items-center">
+        <section id="home" className="grid gap-12 md:grid-cols-[minmax(0,3fr),minmax(0,2.4fr)] items-center scroll-mt-28">
           <div className="space-y-4 sm:space-y-2">
-            <div className="group inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-white/[0.02] px-3 py-1 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-400 backdrop-blur-md transition-all hover:bg-white/[0.04]">
+            <div className="group inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-white/[0.02] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-400 backdrop-blur-md transition-all hover:bg-white/[0.04] sm:text-[11px]">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
               </span>
-              <span>Available for design & front‑end builds</span>
+              <span>Available for end‑to‑end builds</span>
             </div>
             <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-4 md:max-w-xl">
                 <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                  <span className="block text-zinc-400 text-base font-normal tracking-[0.3em] uppercase mb-3">
+                  <span className="mb-3 block text-sm font-medium uppercase tracking-[0.34em] text-zinc-300 sm:text-base">
                     Atul Senapati
                   </span>
                   <span className="bg-gradient-to-r from-zinc-200 via-neutral-300 to-white bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(45,212,191,0.45)]">
@@ -414,7 +416,7 @@ export default function HomeClient() {
         </section>
 
         {/* Work */}
-        <section id="work" className="space-y-6">
+        <section id="work" className="space-y-6 scroll-mt-24">
           <div className="flex items-end justify-between gap-4">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
@@ -496,7 +498,7 @@ export default function HomeClient() {
         </section>
 
         {/* Experience */}
-        <section id="experience" className="space-y-6 mt-12">
+        <section id="experience" className="space-y-6 mt-12 scroll-mt-24">
           <div className="flex items-end justify-between gap-4">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
@@ -582,7 +584,7 @@ export default function HomeClient() {
         {/* Tools I use */}
         <section
           id="tools"
-          className="relative mt-6 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:px-8 md:py-10"
+          className="scroll-mt-24 relative mt-6 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:px-8 md:py-10"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(120,119,198,0.12),transparent)]" />
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-1/2 bg-[linear-gradient(to_top,rgba(0,0,0,0.4),transparent)]" />
@@ -641,7 +643,7 @@ export default function HomeClient() {
         {/* Contact */}
         <section
           id="contact"
-          className="mt-4 grid gap-8 rounded-3xl border border-zinc-900/80 bg-zinc-950/60 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:grid-cols-[minmax(0,1.4fr),minmax(0,1.6fr)] md:px-8 md:py-10"
+          className="scroll-mt-24 mt-4 grid gap-8 rounded-3xl border border-zinc-900/80 bg-zinc-950/60 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.9)] md:grid-cols-[minmax(0,1.4fr),minmax(0,1.6fr)] md:px-8 md:py-10"
         >
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
@@ -747,7 +749,7 @@ export default function HomeClient() {
         {/* Connect / Social */}
         <section
           id="connect"
-          className="relative mt-2 md:mt-6 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.9)] md:px-8 md:py-7"
+          className="scroll-mt-24 relative mt-2 md:mt-6 overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/80 px-6 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.9)] md:px-8 md:py-7"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_-20%,rgba(16,185,129,0.12),transparent)]" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-[radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_60%)]" />
