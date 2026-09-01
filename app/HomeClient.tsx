@@ -108,6 +108,17 @@ const socialLinks = [
 
 const projects = [
   {
+    // TODO: add `href` once Arclight is deployed. Until then the tile renders
+    // unlinked rather than pointing at a dead or localhost URL.
+    title: "Arclight",
+    label: "Consulting, Brand, Web",
+    description:
+      "A consulting studio site built on one promise — execution over advice. Warm light palette, oversized editorial type, and a hero that keeps the eye moving.",
+    accent: "from-orange-500/60 via-amber-400/60 to-rose-400/60",
+    previewImageMobile: "/previews/ipad-arclight.png",
+    deviceImage: "/previews/Starlight-arclight.png",
+  },
+  {
     title: "Seenly",
     href: "https://web-psi-bice-41.vercel.app/",
     label: "SaaS, Dashboard, Analytics",
@@ -433,12 +444,25 @@ export default function HomeClient() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {projects?.map((project) => (
-              <Link
-                key={project.href}
-                href={project.href}
-                target="_blank"
-                className="group relative flex flex-col overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/60 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.85)] transition duration-300 hover:-translate-y-1.5 hover:border-zinc-300/40 hover:shadow-[0_26px_110px_rgba(0,0,0,0.9)]"
+            {projects?.map((project) => {
+              // Projects without an href aren't live yet. They still get a
+              // tile, but rendered as a plain div so nothing invites a click
+              // that goes nowhere.
+              const href = "href" in project ? project.href : undefined;
+              const Card = href ? Link : "div";
+              const cardProps = href
+                ? { href, target: "_blank" as const }
+                : {};
+
+              return (
+              <Card
+                key={project.title}
+                {...(cardProps as { href: string; target: "_blank" })}
+                className={`group relative flex flex-col overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/60 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.85)] transition duration-300 ${
+                  href
+                    ? "hover:-translate-y-1.5 hover:border-zinc-300/40 hover:shadow-[0_26px_110px_rgba(0,0,0,0.9)]"
+                    : "hover:border-zinc-700"
+                }`}
               >
                 <div
                   className={`pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-br ${project.accent} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-80`}
@@ -470,9 +494,11 @@ export default function HomeClient() {
                       {project.title}
                     </h3>
                   </div>
-                  <span className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/80 text-sm text-zinc-200 transition group-hover:border-zinc-200 group-hover:bg-zinc-50 group-hover:text-zinc-950">
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </span>
+                  {href && (
+                    <span className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/80 text-sm text-zinc-200 transition group-hover:border-zinc-200 group-hover:bg-zinc-50 group-hover:text-zinc-950">
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
+                  )}
                 </div>
 
                 <p className="relative mt-3 text-xs leading-relaxed text-zinc-300">
@@ -481,16 +507,25 @@ export default function HomeClient() {
 
                 <div className="relative mt-4 flex items-center gap-3 text-[0.7rem] text-zinc-400">
                   <span className="inline-flex items-center gap-1 rounded-full border border-zinc-800/80 bg-zinc-900/80 px-2.5 py-1">
-                    <span className="h-1 w-1 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]" />
+                    <span
+                      className={
+                        href
+                          ? "h-1 w-1 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
+                          : "h-1 w-1 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)]"
+                      }
+                    />
                     {" "}
-                    Live in this project
+                    {href ? "Live in this project" : "In development"}
                   </span>
                   <span className="hidden text-zinc-500 sm:inline">
-                    Hover to preview the energy. Click to dive in.
+                    {href
+                      ? "Hover to preview the energy. Click to dive in."
+                      : "Launching soon."}
                   </span>
                 </div>
-              </Link>
-            ))}
+              </Card>
+              );
+            })}
           </div>
           <div className="mt-1 text-center text-xs text-zinc-500 sm:mt-2 sm:text-sm">
             …and more experiments coming soon.
