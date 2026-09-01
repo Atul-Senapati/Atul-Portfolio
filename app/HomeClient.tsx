@@ -474,13 +474,17 @@ export default function HomeClient() {
                     alt={project.title}
                     className="w-3/5 h-full object-cover"
                   />
+                  {/* Tablets are wider than phones, so they get a wider box
+                      rather than a transform. `scale-125` grew the element to
+                      208px inside a 167px row, which pushed the frame past the
+                      card's top edge and got clipped by overflow-hidden. */}
                   <img
                     src={project.previewImageMobile}
                     alt={project.title}
-                    className={`w-1/5 h-full object-contain ${
+                    className={`h-full object-contain ${
                       project.previewImageMobile.includes("iphone")
-                        ? "scale-100"
-                        : "scale-125"
+                        ? "w-1/5"
+                        : "w-1/4"
                     }`}
                   />
                 </div>
