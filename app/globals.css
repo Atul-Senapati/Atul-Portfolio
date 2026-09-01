@@ -25,6 +25,45 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animate X only. Tailwind v4's `-translate-y-1/2` uses the standalone
+   `translate` property, which COMPOSES with `transform` rather than being
+   overridden by it — so re-declaring translateY(-50%) here stacked a second
+   half-height shift and pushed the rail up off centre. */
+@keyframes navSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(28px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* signal travelling along the routing diagram's paths */
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes dockRiseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes heroFadeUp {
   0% {
     opacity: 0;
