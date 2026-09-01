@@ -196,6 +196,16 @@ const projects = [
     deviceImage: "/previews/Starlight-1.png",
   },
   {
+    title: "QuickProperty AI",
+    href: "https://atul-senapati.github.io/real-estate/",
+    label: "Real Estate, Search, Listings",
+    description:
+      "A property search experience — filter by type, price, location and rooms, then browse listings in a clean, photography-led layout.",
+    accent: "from-blue-600/60 via-sky-500/60 to-indigo-400/60",
+    previewImageMobile: "/previews/ipad-quickproperty.png",
+    deviceImage: "/previews/Starlight-quickproperty.png",
+  },
+  {
     title: "AEX Bike Gear",
     href: "/bike-gear",
     label: "Adventure, Brand, Product UI",
