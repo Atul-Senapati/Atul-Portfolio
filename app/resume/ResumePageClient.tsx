@@ -153,31 +153,81 @@ export default function ResumePageClient() {
                 What&apos;s inside
               </h2>
               <p className="text-sm text-zinc-400">
-                A concise view of my background as a design‑driven developer —
-                focused on interface design, motion, and modern web engineering.
+                A design‑driven developer building data-dense product
+                interfaces — dashboards, conversational AI, and the front‑end
+                engineering behind them.
               </p>
             </div>
 
             <div className="space-y-3 text-sm text-zinc-300">
               <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/80 p-4">
                 <p className="text-[0.7rem] uppercase tracking-[0.22em] text-zinc-500">
+                  Currently
+                </p>
+                <p className="mt-2 text-sm font-medium text-zinc-100">
+                  Software Developer
+                </p>
+                <p className="mt-0.5 text-xs text-emerald-300">INVOLEAD</p>
+                <p className="mt-1.5 text-xs text-zinc-500">
+                  Jan 2024 – Present · Bhubaneswar
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/80 p-4">
+                <p className="text-[0.7rem] uppercase tracking-[0.22em] text-zinc-500">
                   Highlights
                 </p>
                 <ul className="mt-2 space-y-1.5 text-xs text-zinc-400">
-                  <li>2+ years in front‑end & product interfaces.</li>
-                  <li>Experience across SaaS, AI, and brand websites.</li>
-                  <li>Strong focus on responsive, motion-rich layouts.</li>
+                  <li>2.5+ years across front‑end and full‑stack work.</li>
+                  <li>
+                    B2B marketing analytics dashboards — interactive charts,
+                    editable metrics, exportable reports.
+                  </li>
+                  <li>
+                    Real‑time conversational AI with streaming responses, voice
+                    I/O, and a 3D avatar that reflects conversation state.
+                  </li>
                 </ul>
               </div>
 
               <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/80 p-4">
                 <p className="text-[0.7rem] uppercase tracking-[0.22em] text-zinc-500">
-                  Best experience
+                  Core stack
                 </p>
-                <p className="mt-2 text-xs text-zinc-400">
-                  For the cleanest view, open the resume in a new tab on
-                  desktop. On smaller screens you can still scroll and zoom
-                  inside the embedded viewer.
+                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  {[
+                    "TypeScript",
+                    "React",
+                    "Next.js",
+                    "Tailwind",
+                    "Node.js",
+                    "Express",
+                    "Flask",
+                    "MongoDB",
+                    "PostgreSQL",
+                    "TanStack Query",
+                    "Chart.js",
+                    "Figma",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-zinc-800 bg-zinc-900/60 px-2.5 py-1 text-[0.7rem] text-zinc-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/80 p-4">
+                <p className="text-[0.7rem] uppercase tracking-[0.22em] text-zinc-500">
+                  Education
+                </p>
+                <p className="mt-2 text-xs text-zinc-300">
+                  B.Tech, Computer Science
+                </p>
+                <p className="mt-0.5 text-xs text-zinc-500">
+                  ITER, SOA University · CGPA 8.6
                 </p>
               </div>
 

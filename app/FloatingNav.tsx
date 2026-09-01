@@ -31,9 +31,39 @@ const mobileRight = [
   { id: "connect", label: "Connect", Icon: Share2 },
 ];
 
-// carve the FAB's seat out of the bar
-const NOTCH =
-  "radial-gradient(circle 34px at 50% 0%, transparent 0 33px, #000 34px)";
+/**
+ * The FAB's seat, carved out of the bar.
+ *
+ * A plain `radial-gradient` circle meets the bar's flat top edge at a right
+ * angle, leaving a hard corner on each side of the cut. This is the real
+ * shape instead: two fillet arcs (r=14) tangent to both the top edge and the
+ * notch circle (r=34), so the edge eases into the cut.
+ *
+ * Tangency puts each fillet centre at cx ± √((r+f)² − f²) — worked out below
+ * and baked into the path so nothing has to solve it at runtime.
+ *
+ * It's a fixed-size SVG tile rather than one stretched across the bar: the
+ * mask is assembled from four layers (notch, two side fillers, and the area
+ * below it) so the curve keeps its geometry at any screen width.
+ */
+const NOTCH_W = 140; // tile width
+const NOTCH_H = 40; // tile height — the notch only affects the bar's top band
+
+const NOTCH_SVG =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='40'%3E%3Cpath d='M0 0 L24.09 0 A14 14 0 0 1 37.48 9.92 A34 34 0 0 0 102.52 9.92 A14 14 0 0 1 115.91 0 L140 0 L140 40 L0 40 Z' fill='%23fff'/%3E%3C/svg%3E\")";
+
+const SOLID = "linear-gradient(#000,#000)";
+
+const notchMask = {
+  maskImage: `${NOTCH_SVG}, ${SOLID}, ${SOLID}, ${SOLID}`,
+  maskSize: `${NOTCH_W}px ${NOTCH_H}px, calc(50% - ${NOTCH_W / 2}px) ${NOTCH_H}px, calc(50% - ${NOTCH_W / 2}px) ${NOTCH_H}px, 100% calc(100% - ${NOTCH_H}px)`,
+  maskPosition: "top center, top left, top right, bottom left",
+  maskRepeat: "no-repeat",
+  WebkitMaskImage: `${NOTCH_SVG}, ${SOLID}, ${SOLID}, ${SOLID}`,
+  WebkitMaskSize: `${NOTCH_W}px ${NOTCH_H}px, calc(50% - ${NOTCH_W / 2}px) ${NOTCH_H}px, calc(50% - ${NOTCH_W / 2}px) ${NOTCH_H}px, 100% calc(100% - ${NOTCH_H}px)`,
+  WebkitMaskPosition: "top center, top left, top right, bottom left",
+  WebkitMaskRepeat: "no-repeat",
+} as const;
 
 export default function FloatingNav() {
   const [activeId, setActiveId] = useState("home");
@@ -281,7 +311,7 @@ export default function FloatingNav() {
       <div className="relative">
         {/* bar with the notch masked out */}
         <div
-          style={{ WebkitMaskImage: NOTCH, maskImage: NOTCH }}
+          style={notchMask}
           className="rounded-t-[26px] bg-zinc-950/94 pb-[env(safe-area-inset-bottom)] shadow-[0_-6px_40px_rgba(0,0,0,0.75)] backdrop-blur-2xl"
         >
           <div className="grid h-[62px] grid-cols-5 items-center">
