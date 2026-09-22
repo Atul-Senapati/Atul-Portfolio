@@ -13,11 +13,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://atul-portfolio-red.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Atul Senapati",
   description: "Design‑driven developer",
   icons: {
     icon: "/fav.ico",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
   },
   openGraph: {
     title: "Atul Senapati – Design‑driven developer",

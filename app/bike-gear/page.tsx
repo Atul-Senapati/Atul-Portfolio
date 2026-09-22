@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import BrandDoctrineSection from "./BrandDoctrineSection";
@@ -10,6 +11,31 @@ import GlobalNetworkSection from "./GlobalNetworkSection";
 import ProTeamSection from "./ProTeamSection";
 import FieldDeploymentSection from "./FieldDeploymentSection";
 import Footer from "./Footer";
+
+const SITE_URL = "https://atul-portfolio-red.vercel.app";
+
+export const metadata: Metadata = {
+  title: "AEX Bike Gear | Atul Senapati",
+  description:
+    "AEX Bike Gear — a high-impact adventure brand site with layered depth and motion, showcasing performance gear in a tactile, responsive layout.",
+  alternates: {
+    canonical: `${SITE_URL}/bike-gear`,
+  },
+  openGraph: {
+    title: "AEX Bike Gear — Atul Senapati",
+    description:
+      "High-impact visuals, layered depth, and motion showcasing performance gear in a tactile, responsive layout.",
+    url: `${SITE_URL}/bike-gear`,
+    siteName: "Atul Senapati Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AEX Bike Gear | Atul Senapati",
+    description:
+      "High-impact visuals, layered depth, and motion showcasing performance gear in a tactile, responsive layout.",
+  },
+};
 
 export default function BikeGearPage() {
   return (

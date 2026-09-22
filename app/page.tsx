@@ -54,7 +54,34 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Atul Senapati",
+  url: SITE_URL,
+  image: `${SITE_URL}/developer.png`,
+  jobTitle: "Design‑Driven Frontend Developer",
+  description:
+    "Design‑driven frontend developer focused on cinematic interfaces, motion, and modern web experiences with Next.js, React, and Tailwind.",
+  sameAs: [
+    "https://github.com/Atul-Senapati",
+    "https://www.instagram.com/atul.senapati",
+    "https://www.facebook.com/atul.senapati.92",
+    "https://in.linkedin.com/in/atul-senapati-657b6920a",
+    "https://x.com/atul_senapati",
+    "https://www.upwork.com/freelancers/~0101b4da2e3862f1c5?viewMode=1",
+  ],
+};
+
 export default function Page() {
-  return <HomeClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <HomeClient />
+    </>
+  );
 }
 
