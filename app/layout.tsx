@@ -31,6 +31,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+  verification: {
+    google: "IfyF186s_EfyHgN9Aj6fThjjtRvx6hKuRDsfGkyG4rA",
+  },
   openGraph: {
     title: "Atul Senapati – Design‑driven developer",
     description:
