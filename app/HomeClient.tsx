@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { ArrowUpRight } from "lucide-react";
 import FloatingNav from "./FloatingNav";
+import { trackEvent } from "@/lib/gtag";
+
+const ENGAGEMENT_MILESTONES_SEC = [30, 60, 120];
 
 const toolGroups = [
   {
@@ -226,6 +229,16 @@ export default function HomeClient() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  useEffect(() => {
+    const timers = ENGAGEMENT_MILESTONES_SEC.map((seconds) =>
+      setTimeout(
+        () => trackEvent("engaged_time", { seconds }),
+        seconds * 1000
+      )
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -270,6 +283,7 @@ export default function HomeClient() {
       );
 
       setStatus("success");
+      trackEvent("contact_form_submit", { status: "success" });
       form.reset();
     } catch (error) {
       console.error("EmailJS error", error);
@@ -277,6 +291,7 @@ export default function HomeClient() {
       setErrorMessage(
         "Something went wrong sending your message. Please try again."
       );
+      trackEvent("contact_form_submit", { status: "error" });
     } finally {
       setIsSending(false);
     }
@@ -346,6 +361,7 @@ export default function HomeClient() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="#work"
+                  onClick={() => trackEvent("cta_click", { cta: "view_featured_work" })}
                   className="group inline-flex items-center gap-2 rounded-full bg-zinc-50 px-6 py-2.5 text-sm font-medium text-zinc-950 shadow-[0_18px_60px_rgba(0,0,0,0.65)] transition hover:bg-zinc-200"
                 >
                   View featured work
@@ -355,12 +371,14 @@ export default function HomeClient() {
                 </Link>
                 <Link
                   href="/resume"
+                  onClick={() => trackEvent("cta_click", { cta: "view_cv" })}
                   className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-emerald-300 hover:bg-zinc-900/60 hover:text-zinc-50"
                 >
                   View CV
                 </Link>
                 <Link
                   href="#contact"
+                  onClick={() => trackEvent("cta_click", { cta: "contact_me" })}
                   className="group inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/40 px-5 py-2.5 text-sm font-medium text-zinc-100 shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-950"
                 >
                   Contact me
@@ -460,13 +478,22 @@ export default function HomeClient() {
               const href = "href" in project ? project.href : undefined;
               const Card = href ? Link : "div";
               const cardProps = href
-                ? { href, target: "_blank" as const }
+                ? {
+                    href,
+                    target: "_blank" as const,
+                    onClick: () =>
+                      trackEvent("project_click", { project: project.title }),
+                  }
                 : {};
 
               return (
               <Card
                 key={project.title}
-                {...(cardProps as { href: string; target: "_blank" })}
+                {...(cardProps as {
+                  href: string;
+                  target: "_blank";
+                  onClick: () => void;
+                })}
                 className={`group relative flex flex-col overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-950/60 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.85)] transition duration-300 ${
                   href
                     ? "hover:-translate-y-1.5 hover:border-zinc-300/40 hover:shadow-[0_26px_110px_rgba(0,0,0,0.9)]"
@@ -822,6 +849,7 @@ export default function HomeClient() {
                   key={item.label}
                   href={item.href}
                   target="_blank"
+                  onClick={() => trackEvent("social_click", { platform: item.label })}
                   className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-zinc-800/80 bg-zinc-950/80 px-3.5 py-1.75 text-xs text-zinc-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:border-zinc-400/60 hover:bg-zinc-900"
                 >
                   <div
