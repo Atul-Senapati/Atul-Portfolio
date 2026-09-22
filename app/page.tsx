@@ -4,10 +4,9 @@ import HomeClient from "./HomeClient";
 const SITE_URL = "https://atul-portfolio-red.vercel.app";
 
 export const metadata: Metadata = {
-  title:
-    "Atul Senapati | Freelance Full‑Stack Developer & UI/UX Designer",
+  title: "Atul Senapati | Design‑Driven Frontend Developer & UI Engineer",
   description:
-    "Hire Atul Senapati, a freelance full‑stack developer and UI/UX designer crafting cinematic, high‑performance interfaces with React, Next.js, Node.js, and Tailwind.",
+    "Portfolio of Atul Senapati, a design‑driven frontend developer focused on cinematic interfaces, motion, and modern web experiences with Next.js, React, and Tailwind.",
   keywords: [
     "Atul Senapati",
     "frontend developer",
@@ -46,9 +45,9 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/`,
   },
   openGraph: {
-    title: "Atul Senapati — Freelance Full‑Stack Developer & UI/UX Designer",
+    title: "Atul Senapati — Design‑Driven Frontend Developer & UI Engineer",
     description:
-      "Explore featured work, live experiments, and interface design by Atul Senapati — available for freelance full‑stack and UI/UX projects.",
+      "Explore featured work, live experiments, and interface design by Atul Senapati, blending visual storytelling with clean engineering.",
     url: `${SITE_URL}/`,
     siteName: "Atul Senapati Portfolio",
     images: [
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/developer.png`,
         width: 1200,
         height: 1200,
-        alt: "Portrait of freelance full‑stack developer Atul Senapati",
+        alt: "Portrait of design‑driven developer Atul Senapati",
       },
     ],
     locale: "en_US",
@@ -64,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atul Senapati | Freelance Full‑Stack Developer & UI/UX Designer",
+    title: "Atul Senapati | Design‑Driven Frontend Developer",
     description:
-      "Freelance full‑stack developer and UI/UX designer building cinematic, high‑impact interfaces with React, Next.js, Node.js, and Tailwind.",
+      "Design‑driven frontend developer building cinematic, high‑impact interfaces with Next.js, React, and Tailwind.",
     creator: "@atul_senapati",
     images: [`${SITE_URL}/developer.png`],
   },
@@ -78,9 +77,9 @@ const personJsonLd = {
   name: "Atul Senapati",
   url: SITE_URL,
   image: `${SITE_URL}/developer.png`,
-  jobTitle: "Freelance Full‑Stack Developer & UI/UX Designer",
+  jobTitle: "Design‑Driven Frontend Developer",
   description:
-    "Freelance full‑stack developer and UI/UX designer focused on cinematic interfaces, motion, and modern web experiences with React, Next.js, Node.js, and Tailwind.",
+    "Design‑driven frontend developer focused on cinematic interfaces, motion, and modern web experiences with Next.js, React, and Tailwind.",
   knowsAbout: [
     "React",
     "Next.js",
@@ -97,13 +96,6 @@ const personJsonLd = {
     "Full-Stack Development",
     "Frontend Development",
   ],
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "Full-Stack Developer",
-    occupationalCategory: "Software Development",
-    skills:
-      "React, Next.js, TypeScript, Node.js, Python, Flask, MongoDB, Tailwind CSS, UI/UX Design",
-  },
   sameAs: [
     "https://github.com/Atul-Senapati",
     "https://www.instagram.com/atul.senapati",
