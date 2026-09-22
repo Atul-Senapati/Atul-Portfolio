@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import BrandDoctrineSection from "./BrandDoctrineSection";
@@ -10,6 +11,13 @@ import GlobalNetworkSection from "./GlobalNetworkSection";
 import ProTeamSection from "./ProTeamSection";
 import FieldDeploymentSection from "./FieldDeploymentSection";
 import Footer from "./Footer";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function BikeGearPage() {
   return (

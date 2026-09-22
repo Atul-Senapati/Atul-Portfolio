@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Archive from "./Archive";
 import Hero from "./hero5";
 import Manifesto from "./Manifesto";
 import Process from "./process5";
 import Stream from "./Stream";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function Home() {
   return (

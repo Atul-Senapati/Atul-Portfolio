@@ -11,15 +11,54 @@ export const metadata: Metadata = {
     "Atul Senapati",
     "frontend developer",
     "front-end developer",
+    "full stack developer",
+    "fullstack developer",
     "UI engineer",
+    "UI UX designer",
     "product designer",
     "design driven developer",
-    "Next.js portfolio",
+    "freelance developer",
+    "freelance web developer",
+    "freelance full stack developer",
+    "hire freelance developer",
+    "hire frontend developer",
+    "hire full stack developer",
+    "hire React developer",
+    "hire Next.js developer",
     "React developer",
+    "Next.js developer",
+    "Node.js developer",
+    "JavaScript developer",
+    "TypeScript developer",
+    "tech stack",
+    "Next.js portfolio",
     "Tailwind CSS",
     "SaaS landing page",
     "web designer",
+    "remote developer for hire",
     "Bhubaneswar developer",
+    "WordPress developer",
+    "WordPress website developer",
+    "hire WordPress developer",
+    "Webflow developer",
+    "Vue.js developer",
+    "Figma to code developer",
+    "Framer developer",
+    "landing page designer",
+    "SaaS website developer",
+    "e-commerce website developer",
+    "portfolio website designer",
+    "brand website developer",
+    "custom website developer",
+    "startup website developer",
+    "small business website developer",
+    "motion design developer",
+    "interactive web experiences",
+    "responsive web design",
+    "modern UI design",
+    "India frontend developer",
+    "Odisha web developer",
+    "no-code to code developer",
   ],
   authors: [{ name: "Atul Senapati", url: "https://github.com/Atul-Senapati" }],
   creator: "Atul Senapati",
@@ -54,7 +93,53 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Atul Senapati",
+  url: SITE_URL,
+  image: `${SITE_URL}/developer.png`,
+  jobTitle: "Design‑Driven Frontend Developer",
+  description:
+    "Design‑driven frontend developer focused on cinematic interfaces, motion, and modern web experiences with Next.js, React, and Tailwind.",
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Node.js",
+    "Python",
+    "Flask",
+    "MongoDB",
+    "Tailwind CSS",
+    "Figma",
+    "UI/UX Design",
+    "Framer Motion",
+    "WordPress",
+    "Webflow",
+    "Vue.js",
+    "Full-Stack Development",
+    "Frontend Development",
+  ],
+  sameAs: [
+    "https://github.com/Atul-Senapati",
+    "https://www.instagram.com/atul.senapati",
+    "https://www.facebook.com/atul.senapati.92",
+    "https://in.linkedin.com/in/atul-senapati-657b6920a",
+    "https://x.com/atul_senapati",
+    "https://www.upwork.com/freelancers/~0101b4da2e3862f1c5?viewMode=1",
+  ],
+};
+
 export default function Page() {
-  return <HomeClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <HomeClient />
+    </>
+  );
 }
 
