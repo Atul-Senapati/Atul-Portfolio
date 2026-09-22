@@ -5,28 +5,10 @@ import Manifesto from "./Manifesto";
 import Process from "./process5";
 import Stream from "./Stream";
 
-const SITE_URL = "https://atul-portfolio-red.vercel.app";
-
 export const metadata: Metadata = {
-  title: "Cine‑Lab Studio | Atul Senapati",
-  description:
-    "Cine‑Lab Studio — an atmospheric project exploring light, grain, and motion through bold layouts and story‑driven sections.",
-  alternates: {
-    canonical: `${SITE_URL}/cine-lab`,
-  },
-  openGraph: {
-    title: "Cine‑Lab Studio — Atul Senapati",
-    description:
-      "An atmospheric cine‑lab exploring light, grain, and motion through bold layouts and story‑driven sections.",
-    url: `${SITE_URL}/cine-lab`,
-    siteName: "Atul Senapati Portfolio",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Cine‑Lab Studio | Atul Senapati",
-    description:
-      "An atmospheric cine‑lab exploring light, grain, and motion through bold layouts and story‑driven sections.",
+  robots: {
+    index: false,
+    follow: false,
   },
 };
 
